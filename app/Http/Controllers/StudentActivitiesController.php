@@ -92,7 +92,7 @@ class StudentActivitiesController extends Controller
 
         $activities = Activities::where('class_id', $class->id)
             ->where('category', $category)
-            ->latest()
+            ->oldest()
             ->get();
 
         return Inertia::render('Student/Activities', [
