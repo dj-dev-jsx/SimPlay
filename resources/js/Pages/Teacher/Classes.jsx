@@ -43,6 +43,7 @@ export default function Classes({ initialClasses = [], students = [] }) {
     email: "",
     password: "",
   });
+  
 
   const toggleAccordion = (index) =>
     setExpanded(expanded === index ? null : index);
@@ -302,6 +303,7 @@ export default function Classes({ initialClasses = [], students = [] }) {
                               {student.firstname} {student.lastname} ({student.username})
                             </option>
                           ))}
+                          
                         </select>
 
                         <div className="text-center text-gray-500 font-medium my-2">— OR —</div>
@@ -403,7 +405,7 @@ export default function Classes({ initialClasses = [], students = [] }) {
                     <tbody className="divide-y divide-gray-100">
                       {(cls.students || []).map((student) => (
                         <tr key={student.id}>
-                          <td className="px-4 py-2">{student.firstname} {student.lastname}</td>
+                          <td className="px-4 py-2">{student.firstname} {student.middlename} {student.lastname}</td>
                           <td className="px-4 py-2">{student.username || "-"}</td>
                           <td className="px-4 py-2">{student.email || "-"}</td>
                           <td className="px-4 py-2 flex gap-2">
