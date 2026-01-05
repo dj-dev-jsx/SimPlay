@@ -79,7 +79,7 @@ export default function Activities({ class: studentClass, activities }) {
                         transition
                     "
                     >
-                    Start Activity →
+                    {activity.category=== 'reference' ? 'View Reference' : 'Start Activity'}
                     </Link>
 
                 </div>

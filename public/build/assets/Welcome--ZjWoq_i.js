@@ -1,18 +1,4 @@
-import { Head, Link } from "@inertiajs/react";
-
-export default function Welcome({ auth }) {
-    return (
-        <>
-            <Head title="Welcome" />
-
-            <div className="min-h-screen bg-[#96b190] text-gray-800 flex flex-col">
-                {/* Top Logo Section */}
-                <header className="bg-gray-200 shadow-sm">
-                    <div className="flex flex-col items-center py-4 sm:py-6 md:py-8">
-                        <img
-                            src="salindingan_logo.jpg"
-                            alt="School Logo"
-                            className="
+import{j as n,H as e,L as t}from"./app-BnqAK2iq.js";function m({auth:s}){return n.jsxs(n.Fragment,{children:[n.jsx(e,{title:"Welcome"}),n.jsxs("div",{className:"min-h-screen bg-[#96b190] text-gray-800 flex flex-col",children:[n.jsx("header",{className:"bg-gray-200 shadow-sm",children:n.jsx("div",{className:"flex flex-col items-center py-4 sm:py-6 md:py-8",children:n.jsx("img",{src:"salindingan_logo.jpg",alt:"School Logo",className:`
                                 h-16 
                                 sm:h-32  
                                 md:h-48 
@@ -21,37 +7,21 @@ export default function Welcome({ auth }) {
                                 mb-3
                                 object-contain
                                 
-                            "
-                        />
-                    </div>
-                </header>
-
-                {/* Center Content */}
-                <main className="flex flex-1 items-center justify-center px-4 sm:px-6 md:px-8">
-                    <div className="
+                            `})})}),n.jsx("main",{className:"flex flex-1 items-center justify-center px-4 sm:px-6 md:px-8",children:n.jsxs("div",{className:`
                         w-full 
                         max-w-md 
                         sm:max-w-lg 
                         md:max-w-xl 
                         lg:max-w-2xl 
                         text-center
-                    ">
-                        <h2 className="
+                    `,children:[n.jsxs("h2",{className:`
                             text-2xl 
                             sm:text-3xl 
                             md:text-4xl 
                             lg:text-5xl 
                             font-extrabold 
                             tracking-wide
-                        ">
-                            COME ON, LET’S{" "}
-                            <span className="text-orange-500">PLAY</span>
-                        </h2>
-
-                        <img
-                            src="primath.png"
-                            alt="Welcome Illustration"
-                            className="
+                        `,children:["COME ON, LET’S"," ",n.jsx("span",{className:"text-orange-500",children:"PLAY"})]}),n.jsx("img",{src:"primath.png",alt:"Welcome Illustration",className:`
                                 mx-auto 
                                 mt-6 
                                 sm:mt-8 
@@ -61,10 +31,7 @@ export default function Welcome({ auth }) {
                                 md:w-80 
                                 lg:w-96 
                                 object-contain
-                            "
-                        />
-
-                        <p className="
+                            `}),n.jsx("p",{className:`
                             mt-4 
                             sm:mt-6 
                             text-xs 
@@ -75,17 +42,7 @@ export default function Welcome({ auth }) {
                             tracking-wider 
                             text-black
                             font-bold
-                        ">
-                            A Strategic Intervention Material in Adding Dissimilar
-                            Fractions
-                        </p>
-
-                        {/* Login / Dashboard Button */}
-                        <div className="mt-6 sm:mt-8 md:mt-10">
-                            
-                                <Link
-                                    href={route("login")}
-                                    className="
+                        `,children:"A Strategic Intervention Material in Adding Dissimilar Fractions"}),n.jsx("div",{className:"mt-6 sm:mt-8 md:mt-10",children:n.jsx(t,{href:route("login"),className:`
                                         inline-block 
                                         rounded-xl 
                                         bg-green-600 
@@ -99,39 +56,18 @@ export default function Welcome({ auth }) {
                                         text-white 
                                         shadow 
                                         hover:bg-green-700
-                                    "
-                                >
-                                    Log in to Start
-                                </Link>
-                            
-                        </div>
-                    </div>
-                </main>
-
-                {/* Footer */}
-                <footer className="bg-[#96b190] py-3 sm:py-4 md:py-6 text-center">
-                    <p className="
+                                    `,children:"Log in to Start"})})]})}),n.jsxs("footer",{className:"bg-[#96b190] py-3 sm:py-4 md:py-6 text-center",children:[n.jsx("p",{className:`
                         font-bold 
                         text-lg
                         sm:text-sm 
                         md:text-base 
                         lg:text-lg 
                         text-orange-500 text-outline-white
-                    ">
-                        ROWENA B. RESPOSO
-                    </p>
-                    <p className="
+                    `,children:"ROWENA B. RESPOSO"}),n.jsx("p",{className:`
                     font-bold
                         text-xl 
                         sm:text-sm 
                         md:text-base 
                         lg:text-lg 
                         text-black
-                    ">
-                        Master Teacher II
-                    </p>
-                </footer>
-            </div>
-        </>
-    );
-}
+                    `,children:"Master Teacher II"})]})]})]})}export{m as default};

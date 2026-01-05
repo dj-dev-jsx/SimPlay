@@ -6,6 +6,7 @@ use App\Models\Classes;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Inertia\Inertia;
 
 class StudentController extends Controller
 {
@@ -59,4 +60,63 @@ class StudentController extends Controller
         ]);
 
     }
+
+public function teachers()
+{
+    $teachers = User::role('teacher')
+        ->select(
+            'id',
+            'firstname',
+            'middlename',
+            'lastname',
+            'username',
+            'email'
+        )
+        ->orderBy('lastname')
+        ->get()
+        ->map(function ($teacher) {
+            return [
+                'id' => $teacher->id,
+                'fullname' => trim(
+                    "{$teacher->firstname} {$teacher->middlename} {$teacher->lastname}"
+                ),
+                'username' => $teacher->username,
+                'email' => $teacher->email,
+            ];
+        });
+
+    return Inertia::render('Teacher/Teachers', [
+        'teachers' => $teachers,
+    ]);
+
+    
+}
+
+public function store_teacher(Request $request)
+    {
+        $request->validate([
+            'firstname' => 'required|string|max:255',
+            'middlename' => 'nullable|string|max:255',
+            'lastname'  => 'required|string|max:255',
+            'username'  => 'required|string|max:255|unique:users,username',
+            'email'     => 'nullable|email|unique:users,email',
+            'password'  => 'nullable|string|min:6',
+        ]);
+
+        $teacher = User::create([
+            'firstname' => $request->firstname,
+            'middlename' => $request->middlename,
+            'lastname' => $request->lastname,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'email_verified_at' => now(),
+        ]);
+
+        $teacher->assignRole('teacher');
+
+        return redirect()->route('teacher.teachers')
+            ->with('success', 'Teacher added successfully.');
+    }
+
 }

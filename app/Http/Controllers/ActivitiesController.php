@@ -11,29 +11,35 @@ use Inertia\Inertia;
 
 class ActivitiesController extends Controller
 {
-    // List all classes for the teacher
+    /* =========================================
+     * TEACHER – CLASSES WITH ACTIVITY ACCESS
+     * ========================================= */
     public function teacher_activities()
     {
-        $classes = Classes::withCount(['students as student_count' => function($query) {
-            $query->role('student');
-        }])
-        ->with(['students' => function ($query) {
-            $query->role('student');
-        }])
-        ->where('teacher_id', Auth::id())
-        ->get();
+        $classes = Classes::withCount([
+                'students as student_count' => function ($q) {
+                    $q->role('student');
+                }
+            ])
+            ->with(['students' => function ($q) {
+                $q->role('student');
+            }])
+            ->where('teacher_id', Auth::id())
+            ->get();
 
         return Inertia::render('Teacher/Activities', [
             'initialClasses' => $classes,
         ]);
     }
 
-    // List activities for a specific class
+    /* =========================================
+     * LIST ACTIVITIES FOR A CLASS
+     * ========================================= */
     public function list_of_activities($classId)
     {
         $class = Classes::with([
-                'activities' => function ($query) {
-                    $query->latest();
+                'activities' => function ($q) {
+                    $q->latest();
                 }
             ])
             ->where('teacher_id', Auth::id())
@@ -45,69 +51,98 @@ class ActivitiesController extends Controller
         ]);
     }
 
-    // Store new activity
+    /* =========================================
+     * STORE ACTIVITY
+     * ========================================= */
     public function store_activity(Request $request, $classId)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
+            'title'        => 'required|string|max:255',
+            'introduction' => 'nullable|string',
             'instructions' => 'nullable|string',
-            'image' => 'required|image|mimes:jpg,png,jpeg|max:2048',
+            'category'     => 'nullable|in:pre_activity,concept_activity,application,reference',
+            'image'        => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        $path = $request->file('image')->store('activities', 'public');
+        $path = null;
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('activities', 'public');
+        }
 
         $activity = Activities::create([
-            'class_id' => $classId,
-            'title' => $request->title,
+            'class_id'     => $classId,
+            'title'        => $request->title,
+            'introduction' => $request->introduction,
             'instructions' => $request->instructions,
-            'image_path' => $path,
-            'created_by' => Auth::id(),
+            'category'     => $request->category,
+            'image_path'   => $path,
+            'created_by'   => Auth::id(),
         ]);
 
-        return response()->json(['activity' => $activity], 201);
+        return response()->json([
+            'activity' => $activity
+        ], 201);
     }
 
-    // Update existing activity
+    /* =========================================
+     * UPDATE ACTIVITY
+     * ========================================= */
     public function update_activity(Request $request, $activityId)
     {
         $activity = Activities::where('created_by', Auth::id())
             ->findOrFail($activityId);
 
         $request->validate([
-            'title' => 'required|string|max:255',
+            'title'        => 'required|string|max:255',
+            'introduction' => 'nullable|string',
             'instructions' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
+            'category'     => 'nullable|in:pre_activity,concept_activity,application,reference',
+            'image'        => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        // Update image if uploaded
         if ($request->hasFile('image')) {
-            // Delete old image
-            if ($activity->image_path && Storage::disk('public')->exists($activity->image_path)) {
+            if (
+                $activity->image_path &&
+                Storage::disk('public')->exists($activity->image_path)
+            ) {
                 Storage::disk('public')->delete($activity->image_path);
             }
+
             $activity->image_path = $request->file('image')->store('activities', 'public');
         }
 
-        $activity->title = $request->title;
-        $activity->instructions = $request->instructions;
-        $activity->save();
+        $activity->update([
+            'title'        => $request->title,
+            'introduction' => $request->introduction,
+            'instructions' => $request->instructions,
+            'category'     => $request->category,
+        ]);
 
-        return response()->json(['activity' => $activity]);
+        return response()->json([
+            'activity' => $activity
+        ]);
     }
 
-    // Delete activity
+    /* =========================================
+     * DELETE ACTIVITY
+     * ========================================= */
     public function delete_activity($activityId)
     {
         $activity = Activities::where('created_by', Auth::id())
             ->findOrFail($activityId);
 
-        // Delete image
-        if ($activity->image_path && Storage::disk('public')->exists($activity->image_path)) {
+        if (
+            $activity->image_path &&
+            Storage::disk('public')->exists($activity->image_path)
+        ) {
             Storage::disk('public')->delete($activity->image_path);
         }
 
         $activity->delete();
 
-        return response()->json(['message' => 'Activity deleted successfully.']);
+        return response()->json([
+            'message' => 'Activity deleted successfully.'
+        ]);
     }
 }

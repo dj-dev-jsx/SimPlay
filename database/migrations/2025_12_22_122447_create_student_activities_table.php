@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('student_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('activity_id')->constrained('activities')->onDelete('cascade');
-            $table->enum('status', ['not_started', 'in_progress', 'completed'])->default('not_started');
+            $table->enum('status', ['not_started', 'in_progress', 'completed'])->default('not_started')->nullable();
             $table->foreignId('marked_by')->constrained('users')->onDelete('cascade')->nullable();
             $table->timestamp('marked_at')->nullable();
             $table->timestamps();

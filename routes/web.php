@@ -74,6 +74,9 @@ Route::middleware(['auth', 'role:teacher'])->prefix('teacher')->group(function (
     Route::post('/activities/{activityId}/update', [ActivitiesController::class, 'update_activity'])->name('teacher.update_activity');
     Route::delete('/activities/{activityId}/delete', [ActivitiesController::class, 'delete_activity'])->name('teacher.delete_activity');
 
+    Route::get('/teachers', [StudentController::class, 'teachers'])->name('teacher.teachers');
+    Route::post('/teachers_store', [StudentController::class, 'store_teacher'])->name('teachers.store_teacher');
+
     Route::get(
   '/teacher/activities/{activity}/records',
   [TeacherActivityRecordController::class, 'index']

@@ -11,8 +11,9 @@ class Activities extends Model
         'class_id',
         'title',
         'instructions',
+        'introduction',
+        'category',
         'image_path',
-        'is_sequential',
         'created_by',
     ];
 

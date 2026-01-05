@@ -9,6 +9,7 @@ export default function TeacherLayout({ children }) {
         { icon: Home, label: "Dashboard", href: route("teacher.teacher_dashboard") },
         { icon: BookOpen, label: "Classes", href: route("teacher.teacher_classes") },
         { icon: Paperclip, label: "Activities", href: route("teacher.teacher_activities") },
+        { icon: Users, label: "Teachers", href: route("teacher.teachers") },
     ];
 
     return (

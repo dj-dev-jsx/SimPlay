@@ -5,10 +5,10 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
-import { User, Lock, Smile } from 'lucide-react';
+import { User, Lock } from 'lucide-react';
 
 export default function Login({ status, canResetPassword }) {
-    const { data, setData, post, processing, errors } = useForm({
+    const { data, setData, post, processing, errors, reset } = useForm({
         username: '',
         password: '',
         remember: false,
@@ -26,35 +26,36 @@ export default function Login({ status, canResetPassword }) {
             <Head title="Log in" />
 
             <div className="min-h-screen flex items-center justify-center bg-[#96b190] px-4">
-                <div className="
-                    w-full 
-                    max-w-sm 
-                    sm:max-w-md 
-                    md:max-w-lg 
-                    bg-white 
-                    rounded-3xl 
-                    shadow-xl 
-                    p-6 
-                    sm:p-8 
-                    md:p-10
-                ">
-                    {/* Title */}
+                <div
+                    className="
+                        w-full
+                        max-w-sm
+                        sm:max-w-md
+                        md:max-w-lg
+                        bg-white
+                        rounded-3xl
+                        shadow-xl
+                        p-6
+                        sm:p-8
+                        md:p-10
+                    "
+                >
+                    {/* Title & Logo */}
                     <div className="text-center mb-6">
-                        <div className="flex justify-center mb-2">
-                            <Smile className="h-10 w-10 sm:h-12 sm:w-12 text-orange-500" />
+                        <div className="flex justify-center mb-3">
+                            <img
+                                src="primath.png"
+                                alt="School Logo"
+                                className="
+                                    h-20
+                                    sm:h-24
+                                    md:h-28
+                                    w-auto
+                                    object-contain
+                                    animate-float
+                                "
+                            />
                         </div>
-                        <h2 className="
-                            text-2xl 
-                            sm:text-3xl 
-                            md:text-4xl 
-                            font-extrabold 
-                            text-green-700
-                        ">
-                            Welcome Back!
-                        </h2>
-                        <p className="text-xs sm:text-sm md:text-base text-gray-600">
-                            Let’s start learning 🎒
-                        </p>
                     </div>
 
                     {status && (
@@ -79,9 +80,9 @@ export default function Login({ status, canResetPassword }) {
                                     name="username"
                                     value={data.username}
                                     className="
-                                        block w-full 
-                                        pl-10 
-                                        rounded-xl 
+                                        block w-full
+                                        pl-10
+                                        rounded-xl
                                         text-sm sm:text-base md:text-lg
                                     "
                                     autoComplete="username"
@@ -109,9 +110,9 @@ export default function Login({ status, canResetPassword }) {
                                     name="password"
                                     value={data.password}
                                     className="
-                                        block w-full 
-                                        pl-10 
-                                        rounded-xl 
+                                        block w-full
+                                        pl-10
+                                        rounded-xl
                                         text-sm sm:text-base md:text-lg
                                     "
                                     autoComplete="current-password"
@@ -150,12 +151,12 @@ export default function Login({ status, canResetPassword }) {
 
                             <PrimaryButton
                                 className="
-                                    w-full sm:w-auto 
-                                    bg-green-600 
-                                    hover:bg-green-700 
-                                    rounded-xl 
-                                    px-6 sm:px-8 
-                                    py-2 sm:py-3 
+                                    w-full sm:w-auto
+                                    bg-green-600
+                                    hover:bg-green-700
+                                    rounded-xl
+                                    px-6 sm:px-8
+                                    py-2 sm:py-3
                                     text-sm sm:text-base md:text-lg
                                 "
                                 disabled={processing}
