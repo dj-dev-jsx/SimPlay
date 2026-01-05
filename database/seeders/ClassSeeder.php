@@ -15,9 +15,7 @@ class ClassSeeder extends Seeder
         $teachers = User::role('teacher')->get();
 
         $classNames = [
-            'Grade 1 - A', 'Grade 1 - B', 
-            'Grade 2 - A', 'Grade 2 - B', 
-            'Grade 3 - A', 'Grade 3 - B'
+            'Grade 1 - A', 'Grade 1 - B',
         ];
 
         $i = 0;

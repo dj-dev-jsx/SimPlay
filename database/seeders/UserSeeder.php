@@ -33,20 +33,6 @@ class UserSeeder extends Seeder
                 'email' => 'rowena.resposo@gmail.com',
                 'username' => 'rowena',
             ],
-            [
-                'firstname' => 'Ana',
-                'lastname' => 'Reyes',
-                'middlename' => 'S.',
-                'email' => 'ana.reyes@gmail.com',
-                'username' => 'ana',
-            ],
-            [
-                'firstname' => 'Carlos',
-                'lastname' => 'Tan',
-                'middlename' => 'G.',
-                'email' => 'carlos.tan@gmail.com',
-                'username' => 'carlos',
-            ],
         ];
 
         foreach ($teachers as $data) {
@@ -64,20 +50,6 @@ class UserSeeder extends Seeder
                 'middlename' => 'M.',
                 'email' => 'juan.delacruz@gmail.com',
                 'username' => 'juan',
-            ],
-            [
-                'firstname' => 'LeBron',
-                'lastname' => 'James',
-                'middlename' => 'R.',
-                'email' => 'lebron.james@gmail.com',
-                'username' => 'lebron',
-            ],
-            [
-                'firstname' => 'Stephanie',
-                'lastname' => 'Tan',
-                'middlename' => 'G.',
-                'email' => 'stephanie.tan@gmail.com',
-                'username' => 'stephanie',
             ],
         ];
 
