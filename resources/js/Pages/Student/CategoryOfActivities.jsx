@@ -23,7 +23,7 @@ export default function CategoryOfActivities({ categories }) {
           {categories.map((category) => (
             <Link
               key={category}
-              href={route("student.activities.byCategory", category)}
+              href={route("student.activities.byCategory", { category })}
               className="
                 block
                 bg-white
