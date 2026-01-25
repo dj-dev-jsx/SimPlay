@@ -45,11 +45,11 @@ class UserSeeder extends Seeder
 
         $students = [
             [
-                'firstname' => 'Juan',
-                'lastname' => 'Dela Cruz',
+                'firstname' => 'Deejay',
+                'lastname' => 'Balila',
                 'middlename' => 'M.',
-                'email' => 'juan.delacruz@gmail.com',
-                'username' => 'juan',
+                'email' => 'deejay.balila@gmail.com',
+                'username' => 'dj',
             ],
         ];
 
