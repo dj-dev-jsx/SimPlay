@@ -14,17 +14,40 @@ use App\Models\StudentActivities;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
+    if (Auth::check()) {
+        $user = Auth::user();
+
+        if ($user->roles->contains('name', 'admin')) {
+            return redirect()->route('admin.admin_dashboard');
+        }
+
+        if ($user->roles->contains('name', 'teacher')) {
+            return redirect()->route('teacher.teacher_dashboard');
+        }
+
+        if ($user->roles->contains('name', 'student')) {
+            return redirect()->route('student.student_dashboard');
+        }
+
+        // fallback: logged in but no role
+        Auth::logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+
+        return redirect()->route('login')->withErrors([
+            'username' => 'Your account does not have an assigned role.',
+        ]);
+    }
+
+    // guest only
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
-
-Route::get('/', function () {
-    return Inertia::render('Welcome');
 })->name('dashboard');
+
 
 // Route::get('/', function () {
 //     if (Auth::check()) {
